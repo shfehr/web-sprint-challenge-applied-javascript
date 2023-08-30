@@ -1,4 +1,36 @@
+import axios from "axios";
+
+
 const Header = (title, date, temp) => {
+  const headerInfo = document.createElement('div');
+  const dateInfo = document.createElement('span');
+  const titleInfo = document.createElement('h1');
+  const tempInfo = document.createElement('span');
+
+  headerInfo.appendChild(dateInfo);
+  headerInfo.appendChild(titleInfo);
+  headerInfo.appendChild(tempInfo);
+
+  // console.log(headerInfo)
+
+  headerInfo.classList.add('header');
+  dateInfo.classList.add('date');
+  tempInfo.classList.add('temp');
+
+  dateInfo.textContent = date;
+  titleInfo.textContent = title;
+  tempInfo.textContent = temp;
+
+  // arguments passed into the function can be used directly within the function
+
+  
+
+  return headerInfo 
+
+  // cannot return a function within itself (most of the time) --> recursion 
+  // make sure to return what is created (component)
+
+
   // TASK 1
   // ---------------------
   // Implement this function taking `title`, `date` and `temp` as its 3 args and returning the markup below.
@@ -13,7 +45,15 @@ const Header = (title, date, temp) => {
   //
 }
 
+// console.log(Header("Chicago", "July", "21")) 
+
+
 const headerAppender = (selector) => {
+
+  const newHeader = Header("Chicago", "July", "21")
+  const location = document.querySelector(selector)
+
+  location.appendChild(newHeader)
   // TASK 2
   // ---------------------
   // Implement this function taking a css selector as its only argument.
@@ -27,5 +67,6 @@ const headerAppender = (selector) => {
   // so all that you need to do is pass it into the querySelector method
   // for the tests to work!
 }
+
 
 export { Header, headerAppender }
